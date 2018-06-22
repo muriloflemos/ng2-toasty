@@ -149,8 +149,8 @@ var ToastyService = /** @class */ (function () {
         else {
             toastyOptions = options;
         }
-        if (!toastyOptions || !toastyOptions.title && !toastyOptions.msg) {
-            throw new Error('ng2-toasty: No toast title or message specified!');
+        if (!toastyOptions || !toastyOptions.title && !toastyOptions.msg && !toastyOptions.htmlContent) {
+            throw new Error('ng2-toasty: No toast title, message or htmlContent specified!');
         }
         type = type || 'default';
         // Set a unique counter for an id
@@ -169,6 +169,7 @@ var ToastyService = /** @class */ (function () {
             id: this.uniqueCounter,
             title: toastyOptions.title,
             msg: toastyOptions.msg,
+            htmlContent: toastyOptions.htmlContent,
             showClose: showClose,
             type: 'toasty-type-' + type,
             theme: 'toasty-theme-' + theme,

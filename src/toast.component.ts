@@ -19,6 +19,7 @@ import { ToastData } from './toasty.service';
                 <br *ngIf="toast.title && toast.msg" />
                 <span *ngIf="toast.msg" class="toast-msg" [innerHtml]="toast.msg | safeHtml"></span>
             </div>
+            <div *ngIf="toast.htmlContent" class="toast-html-content" [innerHtml]="toast.htmlContent | safeHtml"></div>
         </div>`
 })
 export class ToastComponent {

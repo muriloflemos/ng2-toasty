@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 export declare class ToastOptions {
     title: string;
     msg?: string;
+    htmlContent?: string;
     showClose?: boolean;
     theme?: string;
     timeout?: number;
@@ -18,6 +19,7 @@ export declare class ToastData {
     id: number;
     title: string;
     msg: string;
+    htmlContent: string;
     showClose: boolean;
     type: string;
     theme: string;

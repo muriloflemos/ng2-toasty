@@ -15,6 +15,7 @@ import {Observable} from 'rxjs/Observable';
 export class ToastOptions {
   title: string;
   msg?: string;
+  htmlContent?: string;
   showClose?: boolean;
   theme?: string;
   timeout?: number;
@@ -30,6 +31,7 @@ export class ToastData {
   id: number;
   title: string;
   msg: string;
+  htmlContent: string;
   showClose: boolean;
   type: string;
   theme: string;
@@ -165,8 +167,8 @@ export class ToastyService {
       toastyOptions = <ToastOptions>options;
     }
 
-    if (!toastyOptions || !toastyOptions.title && !toastyOptions.msg) {
-      throw new Error('ng2-toasty: No toast title or message specified!');
+    if (!toastyOptions || !toastyOptions.title && !toastyOptions.msg && !toastyOptions.htmlContent) {
+      throw new Error('ng2-toasty: No toast title, message or htmlContent specified!');
     }
 
     type = type || 'default';
@@ -186,14 +188,15 @@ export class ToastyService {
     }
 
     let toast: ToastData = <ToastData>{
-      id       : this.uniqueCounter,
-      title    : toastyOptions.title,
-      msg      : toastyOptions.msg,
-      showClose: showClose,
-      type     : 'toasty-type-' + type,
-      theme    : 'toasty-theme-' + theme,
-      onAdd    : toastyOptions.onAdd && isFunction(toastyOptions.onAdd) ? toastyOptions.onAdd : null,
-      onRemove : toastyOptions.onRemove && isFunction(toastyOptions.onRemove) ? toastyOptions.onRemove : null
+      id         : this.uniqueCounter,
+      title      : toastyOptions.title,
+      msg        : toastyOptions.msg,
+      htmlContent: toastyOptions.htmlContent,
+      showClose  : showClose,
+      type       : 'toasty-type-' + type,
+      theme      : 'toasty-theme-' + theme,
+      onAdd      : toastyOptions.onAdd && isFunction(toastyOptions.onAdd) ? toastyOptions.onAdd : null,
+      onRemove   : toastyOptions.onRemove && isFunction(toastyOptions.onRemove) ? toastyOptions.onRemove : null
     };
 
     // If there's a timeout individually or globally, set the toast to timeout
